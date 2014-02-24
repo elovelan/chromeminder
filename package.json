@@ -1,0 +1,13 @@
+{
+  "name": "Chromeminder",
+  "description": "A Beeminder Chrome Extension",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beeminder/chromeminder.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "coffee-script": "~1.7.1"
+  }
+}
