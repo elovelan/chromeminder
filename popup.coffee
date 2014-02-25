@@ -17,13 +17,13 @@ beeGenerator =
     requestBees: ->
         req = new XMLHttpRequest()
         req.open "GET", this.searchOnFlickr_, true
-        req.onload = this.showPhotos_
+        req.onload = this.showPhotos_.bind this
         req.send null
 
     # Handle the 'onload' event of our XHR request, generated in 'requestBees',
     # by generating 'img' elements, and stuffing them into the document for 
     # display.
-    showPhotos_: (e) =>
+    showPhotos_: (e) ->
         bees = e.target.responseXML.querySelectorAll 'photo'
         for bee in bees
             img = document.createElement 'img'
@@ -42,4 +42,4 @@ beeGenerator =
 
 # Run bee generation script as soon as the document's DOM is ready.
 document.addEventListener 'DOMContentLoaded', ->
-    beeGenerator.requestBees
+    beeGenerator.requestBees()
