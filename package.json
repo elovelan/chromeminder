@@ -8,6 +8,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "coffee-script": "~1.7.1"
+    "grunt": "~0.4.2",
+    "grunt-contrib-coffee": "~0.10.1"
   }
 }
