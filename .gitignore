@@ -1,1 +1,12 @@
-node_modules/
+node_modules
+temp
+.tmp
+dist
+.sass-cache
+app/bower_components
+test/bower_components
+package
+.idea
+app/scripts/**/*.js
+app/styles/**/*.css
+test/spec/**/*.js

@@ -1,0 +1,10 @@
+{
+  "appName": {
+    "message": "Beeminder",
+    "description": "The name of the application"
+  },
+  "appDescription": {
+    "message": "Send a +1 to Beeminder? Show you beemergencies? For now it just shows you bees!",
+    "description": "The description of the application"
+  }
+}

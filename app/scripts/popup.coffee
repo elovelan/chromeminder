@@ -1,4 +1,5 @@
 # Modeled this on an example from Google to show kittens.
+'use strict'
 
 QUERY = 'bees';
 
@@ -12,7 +13,7 @@ beeGenerator =
         sort=interestingness-desc&\
         per_page=20"
 
-    # Sends an XHR GET request to grab photos. The XHR's 'onload' event is 
+    # Sends an XHR GET request to grab photos. The XHR's 'onload' event is
     # hooked up to the 'showPhotos_' method.
     requestBees: ->
         req = new XMLHttpRequest()
@@ -21,7 +22,7 @@ beeGenerator =
         req.send null
 
     # Handle the 'onload' event of our XHR request, generated in 'requestBees',
-    # by generating 'img' elements, and stuffing them into the document for 
+    # by generating 'img' elements, and stuffing them into the document for
     # display.
     showPhotos_: (e) ->
         bees = e.target.responseXML.querySelectorAll 'photo'
