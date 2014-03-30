@@ -15,7 +15,10 @@
         ]
     },
     "browser_action": {
-        "default_icon": "images/infinibee19x19.png",
+        "default_icon": {
+            "19": "images/infinibee19x19.png",
+            "38": "images/infinibee38x38.png"
+        },
         "default_title": "Beeminder",
         "default_popup": "popup.html"
     },
