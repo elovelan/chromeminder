@@ -10,3 +10,4 @@ package
 app/scripts/**/*.js
 app/styles/**/*.css
 test/spec/**/*.js
+app/scripts/token.coffee
