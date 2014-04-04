@@ -1,8 +1,9 @@
-'use strict';
+'use strict'
 
-chrome.runtime.onInstalled.addListener (details) ->
-    console.log('previousVersion', details.previousVersion)
+requirejs.config
+  baseUrl: "scripts",
+  paths:
+    jquery: "../bower_components/jquery/dist/jquery"
+    lodash: "../bower_components/lodash/dist/lodash"
 
-chrome.browserAction.setBadgeText({text: '\'Allo'})
-
-console.log('\'Allo \'Allo! Event Page for Browser Action')
+requirejs ["beeminder_background"]
