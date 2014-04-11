@@ -1,22 +1,24 @@
 'use strict'
 
-define ["jquery","lodash","auth"], ($, _, auth) ->
+define ["jquery","util","auth","models/Goal"], ($, util, auth, Goal) ->
   apiToken = auth.token()
 
-  merge = (objects...) ->
-    initialVal = {}
-    objects.reduce (prev, curr) ->
-      _.assign prev, curr
-    ,initialVal
+  baseUrl = (resource) ->
+    "https://www.beeminder.com/api/v1/#{resource}"
 
-  uriOf = window.encodeURIComponent
+  get = (resource, params={}) =>
+    $.get urlForGet resource, params
 
-  get = (resource, params={}) ->
-    getParams = merge params, 'auth_token': apiToken
-    urlParams = _(getParams)
-                .map (value, name) -> "#{uriOf name}=#{uriOf value}"
-                .join '&'
-    $.get "https://www.beeminder.com/api/v1/#{resource}?#{urlParams}"
+  urlForGet = (resource, params={}) ->
+    allParams = util.merge params, 'auth_token': apiToken
+    uriEnc = encodeURIComponent
+    urlParams =
+      Object.keys allParams
+        .map (name) -> "#{uriEnc name}=#{uriEnc allParams[name]}"
+        .join '&'
+    "#{baseUrl(resource)}?#{urlParams}"
 
   goals: (type='all') ->
     get 'users/me/goals.json', goals_filter: type
+      .then (goals) -> Goal.createGoalsArray goals
+  urlForGet: urlForGet
