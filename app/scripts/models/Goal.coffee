@@ -1,6 +1,6 @@
 'use strict'
 
-define ['util', 'lodash'], (util, _) ->
+define ['util', '_'], (util, _) ->
   class Goal
     constructor: (goalDto) ->
       _.assign this, goalDto
