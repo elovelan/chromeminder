@@ -1,6 +1,6 @@
 'use strict'
 
-define
+define ["_"], (_) ->
   unixDate: ->
     new Date().getTime() // 1000
   merge: (objects...) ->
