@@ -32,17 +32,26 @@ module.exports = (grunt) ->
         tasks: ["bowerInstall"]
 
       coffee:
-        files: ["<%= config.app %>/scripts/{,*/}*.{coffee,litcoffee,coffee.md}"]
-        tasks: ["coffee:chrome"]
+        files: ["<%= config.app %>/scripts/{,*/}*.coffee"]
+        tasks: [
+          "coffee:chrome"
+          #"jshint"
+          "mocha"
+        ]
         options:
           livereload: true
+
+      test:
+        files: ["test/spec/{,*/}*.coffee"]
+        tasks: [
+          "coffee:test"
+          #"jshint"
+          "mocha"
+        ]
 
       compass:
         files: ["<%= config.app %>/styles/{,*/}*.{scss,sass}"]
         tasks: ["compass:chrome"]
-
-      gruntfile:
-        files: ["Gruntfile.js"]
 
       styles:
         files: ["<%= config.app %>/styles/{,*/}*.css"]
@@ -67,14 +76,8 @@ module.exports = (grunt) ->
       options:
         port: 9000
         livereload: 35729
-
         # change this to '0.0.0.0' to access the server from outside
         hostname: "localhost"
-
-      chrome:
-        options:
-          open: false
-          base: ["<%= config.app %>"]
 
       test:
         options:
@@ -337,17 +340,21 @@ module.exports = (grunt) ->
 
   grunt.registerTask "debug", ->
     grunt.task.run [
-      #"jshint"
       "concurrent:chrome"
-      "connect:chrome"
+      "concurrent:test"
+      "connect:test"
+      #"jshint"
+      "mocha"
       "watch"
     ]
 
   grunt.registerTask "test", [
     "concurrent:test"
     "connect:test"
+    #"jshint"
     "mocha"
   ]
+
   grunt.registerTask "build", [
     "clean:dist"
     "chromeManifest:dist"
@@ -358,10 +365,10 @@ module.exports = (grunt) ->
     "uglify"
     "copy"
     "usemin"
-    "compress"
+    #"compress"
   ]
   grunt.registerTask "default", [
-    "jshint"
-    "test"
+    #"jshint"
     "build"
+    "test"
   ]
