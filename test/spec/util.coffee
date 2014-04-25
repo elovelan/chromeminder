@@ -1,6 +1,8 @@
 'use strict'
 
-define ['util'], (util) ->
+define ['util', 'chai'], (util, chai) ->
+  should = chai.should()
+  
   describe 'in utility functions', ->
     describe 'merge will return a new merged object from the incoming objects', ->
       it 'will not modify the existing objects', ->

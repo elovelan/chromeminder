@@ -9,30 +9,7 @@
 <body>
     <div id="mocha"></div>
     <script src="bower_components/mocha/mocha.js"></script>
-    <script>mocha.setup('bdd')</script>
-    <script src="bower_components/chai/chai.js"></script>
-    <script>
-        var should = chai.should();
-    </script>
     <script src='bower_components/requirejs/require.js'></script>
-	  <script>
-  		requirejs.config({
-  			baseUrl: 'scripts',
-        paths: {
-          jquery: "../bower_components/jquery/dist/jquery",
-          _: "../bower_components/lodash/dist/lodash"
-        }
-  		});
-    </script>
-
-    <script>
-      require([
-          // include spec files here...
-          '../spec/util'
-        ],
-        function() {
-          mocha.run()
-        });
-    </script>
+    <script src='testbootstrap.js'></script>
 </body>
 </html>
