@@ -42,7 +42,7 @@ module.exports = (grunt) ->
           livereload: true
 
       test:
-        files: ["test/spec/{,*/}*.coffee"]
+        files: ["test/{,*/}*.coffee"]
         tasks: [
           "coffee:test"
           #"jshint"
@@ -144,9 +144,9 @@ module.exports = (grunt) ->
       test:
         files: [
           expand: true
-          cwd: "test/spec"
+          cwd: "test"
           src: "{,*/}*.coffee"
-          dest: "test/spec"
+          dest: "test"
           ext: ".js"
         ]
 

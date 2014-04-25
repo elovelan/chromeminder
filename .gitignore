@@ -9,5 +9,5 @@ package
 .idea
 app/scripts/**/*.js
 app/styles/**/*.css
-test/spec/**/*.js
+test/**/*.js
 app/scripts/token.coffee
