@@ -2,7 +2,7 @@
 
 define ["_"], (_) ->
   unixDate: ->
-    new Date().getTime() // 1000
+    Date.now() // 1000
   merge: (objects...) ->
     initialVal = {}
     objects.reduce _.assign, initialVal
