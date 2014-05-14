@@ -21,4 +21,3 @@ define ["jquery","util","auth","models/Goal"], ($, util, auth, Goal) ->
   goals: (type='all') ->
     get 'users/me/goals.json', goals_filter: type
       .then (goals) -> Goal.createGoalsArray goals
-  urlForGet: urlForGet

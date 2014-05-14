@@ -15,5 +15,6 @@ require ['chai'], (chai) ->
   require [
     'spec/util'
     'spec/auth'
+    'spec/beeminder_sdk'
   ], ->
     mocha.run()
