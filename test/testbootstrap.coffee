@@ -14,5 +14,6 @@ require ['chai'], (chai) ->
 
   require [
     'spec/util'
+    'spec/auth'
   ], ->
     mocha.run()
