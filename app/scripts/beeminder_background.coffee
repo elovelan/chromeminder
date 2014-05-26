@@ -1,6 +1,6 @@
 'use strict'
 
-define ["beeminder_sdk", "auth"], (sdk, auth) ->
+define ["beeminder_sdk", "auth", "bus"], (sdk, auth, bus) ->
   panicCountText = (goals) ->
     panicCount = goals.panicCount()
     if panicCount is 0 then "" else "#{panicCount}"
