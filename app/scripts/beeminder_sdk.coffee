@@ -10,14 +10,16 @@ define ["jquery","util","auth","models/Goal"], ($, util, auth, Goal) ->
     $.get urlForGet resource, params
 
   urlForGet = (resource, params={}) ->
-    allParams = util.merge params, 'auth_token': apiToken
     uriEnc = encodeURIComponent
     urlParams =
-      Object.keys allParams
-        .map (name) -> "#{uriEnc name}=#{uriEnc allParams[name]}"
+      Object.keys params
+        .map (name) -> "#{uriEnc name}=#{uriEnc params[name]}"
         .join '&'
     "#{baseUrl(resource)}?#{urlParams}"
 
+  getWithAuth = (resource, params = {}) ->
+    get resource, util.merge auth_token: apiToken, params
+
   goals: (type='all') ->
-    get 'users/me/goals.json', goals_filter: type
+    getWithAuth 'users/me/goals.json', goals_filter: type
       .then (goals) -> Goal.createGoalsArray goals
