@@ -90,7 +90,15 @@ module.exports = (grunt) ->
 
     # Empties folders to start fresh
     clean:
-      chrome: {}
+      chrome:
+        files: [
+          dot: true
+          src: [
+            "<%= config.app %>/scripts/{,*/}/*.js"
+            "<%= config.app %>/styles/{,*/}/*.css"
+            "test/spec/{,*/}/*.js"
+          ]
+        ]
       dist:
         files: [
           dot: true
