@@ -29,5 +29,5 @@ define ["jquery","util","models/Goal"], ($, util, Goal) ->
         obj.responseJSON.error
 
   goals: (type='all') ->
-    getWithAuth 'users/me/goals.json', goals_filter: type
+    getWithAuth 'users/me/goals', goals_filter: type
       .then (goals) -> Goal.createGoalsArray goals
