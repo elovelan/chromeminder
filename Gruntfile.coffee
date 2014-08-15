@@ -78,15 +78,7 @@ module.exports = (grunt) ->
         livereload: 35729
         # change this to '0.0.0.0' to access the server from outside
         hostname: "localhost"
-
-      test:
-        options:
-          open: false
-          base: [
-            "test"
-            "<%= config.app %>"
-          ]
-
+      test: {}
 
     # Empties folders to start fresh
     clean:
@@ -126,7 +118,7 @@ module.exports = (grunt) ->
       all:
         options:
           run: false
-          urls: ["http://localhost:<%= connect.options.port %>/index.html"]
+          urls: ["http://localhost:<%= connect.options.port %>/test/index.html"]
 
     # Compiles CoffeeScript to JavaScript
     coffee:

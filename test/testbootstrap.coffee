@@ -1,12 +1,12 @@
 'use strict'
 
 requirejs.config
-  baseUrl: 'scripts'
+  baseUrl: '/app/scripts'
   paths:
-    spec: "../spec"
-    jquery: "../bower_components/jquery/dist/jquery"
-    _: "../bower_components/lodash/dist/lodash"
-    chai: "../bower_components/chai/chai"
+    spec: "/test/spec"
+    jquery: "/app/bower_components/jquery/dist/jquery"
+    _: "/app/bower_components/lodash/dist/lodash"
+    chai: "/test/bower_components/chai/chai"
 
 require ['chai'], (chai) ->
   chai.should()
