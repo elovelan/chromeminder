@@ -9,6 +9,7 @@ requirejs.config
     chai: "/test/bower_components/chai/chai"
     chaiThings: "/node_modules/chai-things/lib/chai-things"
     chaiAsPromised: "/test/bower_components/chai-as-promised/lib/chai-as-promised"
+    test_helpers: "/test/helpers/test_helpers"
 
 require ['chai', 'chaiThings', 'chaiAsPromised'], (chai, chaiThings, chaiAsPromised) ->
   chai.should()

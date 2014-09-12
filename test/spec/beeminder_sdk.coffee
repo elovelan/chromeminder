@@ -1,37 +1,10 @@
-define ['beeminder_sdk', 'chai'], (sdk, chai) ->
-  requestUrlAssert = (_chai) ->
-    _chai.Assertion.addMethod 'callUrl', (url) ->
-      (sandbox) =>
-        sdkPromise = this._obj
-        sdkPromise.then ->
-          sandbox.server.requests.map((req) -> req.url).should.contain.one.with.match url
-
-  chai.use(requestUrlAssert)
-
-  createSandbox = ->
-    sandbox = sinon.sandbox.create()
-    sandbox.useFakeServer()
-    sandbox.server.respondWith /auth_token.json/,
-      [
-        200
-        {"Content-Type": "application/json"}
-        '{ "auth_token": "yo" }'
-      ]
-    sandbox.server.respondWith /goals.json/,
-      [
-        200
-        "Content-Type": "application/json"
-        '[]'
-      ]
-    sandbox.server.autoRespond = true
-    sandbox
-
-  # fn must return a function that operates on a sandbox
-  test = (fn) ->
-    ->
-      sandbox = createSandbox()
-      fn()(sandbox)
-        .then -> sandbox.restore()
+define ['beeminder_sdk', 'test_helpers'], (sdk, test_helpers) ->
+  test = (sandboxfn) ->
+    test_helpers.testWithSandbox () ->
+      (sandbox) ->
+        sandbox.jsonResponse /auth_token.json/, '{ "auth_token": "yo" }'
+        sandbox.jsonResponse /goals.json/, '[]'
+        sandboxfn()(sandbox)
 
   describe 'sdk', ->
     describe 'authentication', ->
