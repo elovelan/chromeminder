@@ -1,9 +1,10 @@
 define ['beeminder_sdk', 'chai'], (sdk, chai) ->
   requestUrlAssert = (_chai) ->
-    _chai.Assertion.addMethod 'callUrl', (url, sandbox) ->
-      sdkPromise = this._obj
-      sdkPromise.then ->
-        sandbox.server.requests.map((req) -> req.url).should.contain.one.with.match url
+    _chai.Assertion.addMethod 'callUrl', (url) ->
+      (sandbox) =>
+        sdkPromise = this._obj
+        sdkPromise.then ->
+          sandbox.server.requests.map((req) -> req.url).should.contain.one.with.match url
 
   chai.use(requestUrlAssert)
 
@@ -25,22 +26,23 @@ define ['beeminder_sdk', 'chai'], (sdk, chai) ->
     sandbox.server.autoRespond = true
     sandbox
 
+  # fn must return a function that operates on a sandbox
   test = (fn) ->
     (done) ->
       sandbox = createSandbox()
-      fn(sandbox)
-      .then -> sandbox.restore()
-      .then -> done()
+      fn()(sandbox)
+        .then -> sandbox.restore()
+        .then -> done()
 
   describe 'sdk', ->
     describe 'authentication', ->
-      it 'will authenticate using cookie', test (sandbox) ->
-        sdk.goals().should.callUrl /auth_token\.json/, sandbox
+      it 'will authenticate using cookie', test ->
+        sdk.goals().should.callUrl /auth_token\.json/
 
     describe 'goals', ->
-      it 'will fetch current list of goals from web api', test (sandbox) ->
-        sdk.goals().should.callUrl /users\/me\/goals\.json/, sandbox
-      it 'will default to fetching all goals', test (sandbox) ->
-        sdk.goals().should.callUrl /goals\.json\?.*filter=all/, sandbox
-      it 'will fetch goals by goal type', test (sandbox) ->
-        sdk.goals('frontburner').should.callUrl /goals\.json\?.*filter=frontburner/, sandbox
+      it 'will fetch current list of goals from web api', test ->
+        sdk.goals().should.callUrl /users\/me\/goals\.json/
+      it 'will default to fetching all goals', test ->
+        sdk.goals().should.callUrl /goals\.json\?.*filter=all/
+      it 'will fetch goals by goal type', test ->
+        sdk.goals('frontburner').should.callUrl /goals\.json\?.*filter=frontburner/
