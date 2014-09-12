@@ -28,11 +28,10 @@ define ['beeminder_sdk', 'chai'], (sdk, chai) ->
 
   # fn must return a function that operates on a sandbox
   test = (fn) ->
-    (done) ->
+    ->
       sandbox = createSandbox()
       fn()(sandbox)
         .then -> sandbox.restore()
-        .then -> done()
 
   describe 'sdk', ->
     describe 'authentication', ->
