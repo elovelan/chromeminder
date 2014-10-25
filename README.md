@@ -10,4 +10,5 @@ Building
     bower install
     cd test
     bower install
+    cd ..
     grunt
